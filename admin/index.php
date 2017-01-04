@@ -28,7 +28,6 @@ case 'edit-category': 				include 'inc/edit-category.php'; 							break;
 case 'show-users': 					include 'inc/show-users.php'; 								break;
 case 'edit-profile': 				include 'inc/edit-profile.php'; 							break;
 
-case 'settings': 					include 'inc/settings.php'; 								break;
 
 case 'logout':						session_destroy(); header('Location: index.php?page=home');		break;
 

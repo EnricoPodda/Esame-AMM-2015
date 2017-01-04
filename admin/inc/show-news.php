@@ -3,9 +3,9 @@ if(isset($_SESSION['enrico-blog']['admin'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=show-news&&pagination=1');
 
-$sql_news 			= 'SELECT * FROM sn_news  ORDER BY id DESC LIMIT '.  (($_GET['pagination']*10)-10) .',10';
+$sql_news 			= 'SELECT * FROM news  ORDER BY id DESC LIMIT '.  (($_GET['pagination']*10)-10) .',10';
 $run_sql_news		= mysql_query($sql_news, $config['conn']);
-$run_news_rows		= mysql_query('SELECT * FROM sn_news');
+$run_news_rows		= mysql_query('SELECT * FROM news');
 $exist_news			= mysql_num_rows($run_news_rows);
 $pagination			= ceil($exist_news/10);
 
@@ -25,13 +25,23 @@ if(isset($_POST['delete-group-news'])):
 	}
 	else
 	{	
-		$delete		= 0;
-		foreach($arrayid as $value):
-			$sql = "DELETE FROM sn_news WHERE id=$value";
-			$run = mysql_query ($sql, $config['conn']);
-			$delete ++; 
-		endforeach;
+		// Implemento la transizione mysql per l'eliminazione di gruppo delle news
+		$mysqli = new mysqli($config['host'], $config['user'], $config['pass'], $config['db']);
+
+		$mysqli->autocommit(false);	
 		
+		foreach($arrayid as $value):
+			//$sql = "DELETE FROM news WHERE id=$value";
+			//$run = mysql_query ($sql, $config['conn']);
+			if(!$mysqli->query("DELETE FROM news WHERE id=$value"))
+				$mysqli->rollback();
+
+		endforeach;
+		$mysqli->commit();
+
+		$mysqli->autocommit(true); 
+		$mysqli->close();
+
 		header("Location: index.php?page=show-news", "refresh");
 	}
 
@@ -64,7 +74,6 @@ endif;
                         <th>Titolo</th>
                         <th>Autore</th>
                         <th>Creata il</th>
-                        <th>Commenti</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -72,7 +81,7 @@ endif;
                 <tbody> 
                 
                 <? while($row_news = mysql_fetch_array($run_sql_news)):
-					$sql_comment 		= "SELECT count(*) FROM sn_comment WHERE id_news =". $row_news['id'];
+					$sql_comment 		= "SELECT count(*) FROM comment WHERE id_news =". $row_news['id'];
 					$run_sql_comment 	= mysql_query($sql_comment, $config['conn']);
 					$comment			= mysql_fetch_array($run_sql_comment);
 						echo '<tr>';
@@ -81,7 +90,6 @@ endif;
 							echo '<td>' .$row_news['title'] .'</td>';
 							echo '<td>' .$row_news['author'] .'</td>';
 							echo '<td>' .$row_news['date'] .' '.$row_news['time'] .'</td>';
-							echo '<td>' .$comment[0].'</td>';
 							echo '<td>
 										<a class="btn" href="index.php?page=edit-news&&value='.$row_news['id'] .'">Modifica</a></td>
 

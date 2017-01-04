@@ -3,7 +3,7 @@ if(isset($_POST['login-go'])):
 	$user			= mysql_real_escape_string($_POST['username']);
 	$password		= mysql_real_escape_string($_POST['password']);
 	$passwordcript	= cript_password($password);
-	$sql = "SELECT * FROM sn_users WHERE username = '$user' and password = '$passwordcript' and level ='admin'";
+	$sql = "SELECT * FROM users WHERE username = '$user' and password = '$passwordcript' and level ='admin'";
 	
 	if($ris = mysql_query($sql))
 	{

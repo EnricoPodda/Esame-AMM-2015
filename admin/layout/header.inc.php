@@ -13,7 +13,8 @@
 <div class="top-bar">
      
     <div class="menu-left">
-    	<a href="index.php?page=home"> Home page</a>
+    	<a href="index.php?page=home"> Amministrazione</a>
+    	<a href="../index.php"> Home page</a>
     </div>
 
     <? if(isset($_SESSION['enrico-blog']['admin'])): ?>

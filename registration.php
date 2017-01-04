@@ -6,24 +6,19 @@ require_once('config.php');
 require_once('admin/inc/function.inc.php');
 $thispage	= basename($_SERVER['PHP_SELF']);
 
-if (@file_exists('config.php') == FALSE): echo '<p>Configuration file missing</p>';
-else:
+if (@file_exists('config.php') == FALSE)
+	exit('<p>Configuration file missing</p>');
 
 if(!isset($_SESSION['enrico-blog']['user'])):
 	if(isset($_POST['signup-go']))
 	{
-		$user					= mysql_real_escape_string($_POST['user']);
+		$user					= mysql_real_escape_string($_POST['username']);
 		$password				= mysql_real_escape_string($_POST['password']);
 		$password_2				= mysql_real_escape_string($_POST['password-2']);
 		$email					= mysql_real_escape_string($_POST['email']);
-		$newsletter				= isset($_POST['newsletter']) ? $_POST['newsletter'] : 0;
 		$passwordcript			= cript_password($password);
-		
-		$url 		= $_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-		$string 	= explode("/", $url);
-		$avatar 	= 'http://'.$string[0].'/'.$string[1].'/upload/default-avatar.png';
-			
-		$query = "INSERT INTO sn_users (username, password, email, newsletter, level, avatar) VALUES ('$user', '$passwordcript', '$email', $newsletter, 'usr', '$avatar');";
+					
+		$query = "INSERT INTO users (username, password, email, level) VALUES ('$user', '$passwordcript', '$email', 'usr');";
 		
 		$error		= FALSE;
 		$message	= array();
@@ -31,13 +26,13 @@ if(!isset($_SESSION['enrico-blog']['user'])):
 		if(strlen($user) < 2)
 		{
 			$error		= TRUE;
-			$message[0]	= 'Il username deve essere di almeno 2 caratteri!';
+			$message[0]	= 'Lo username deve essere di almeno 2 caratteri!';
 		}
 		
-		elseif(strlen($user)>9)
+		elseif(strlen($user)>=9)
 		{
 			$error		= TRUE;
-			$message[0] = 'Il nome utente deve essere di massimo 9 caratteri!';
+			$message[0] = 'Lo deve essere di massimo 9 caratteri!';
 		}
 		
 		if(strlen($password)< 5)
@@ -76,7 +71,7 @@ if(!isset($_SESSION['enrico-blog']['user'])):
 			$message[3] = 'L\'email deve essere lunga massimo 50 caratteri.';
 		}
 		
-		$ceq 	= "SELECT email FROM sn_users WHERE email = '$email';";
+		$ceq 	= "SELECT email FROM users WHERE email = '$email';";
 		$rceq	= mysql_query($ceq);
 		if($rceq)
 		{
@@ -88,7 +83,7 @@ if(!isset($_SESSION['enrico-blog']['user'])):
 			}
 		}
 		
-		$clq 	= "SELECT username FROM sn_users WHERE username = '$user';";
+		$clq 	= "SELECT username FROM users WHERE username = '$user';";
 		$rclq	= mysql_query($clq);
 		if($rclq)
 		{
@@ -106,8 +101,7 @@ if(!isset($_SESSION['enrico-blog']['user'])):
 			if(mysql_query($query))
 			{
 				$error		= FALSE;
-				$message[6]	= 'L\'account &egrave; stato registrato con successo, verrai reindirizzato alla home.';
-				header("Refresh: 3; url=index.php");
+				header("Location: index.php");
 			}
 			else
 			{
@@ -116,20 +110,47 @@ if(!isset($_SESSION['enrico-blog']['user'])):
 			}
 			
 		}
-	
-		foreach($message as $value) : echo '<p>'.$value .'</p>'; endforeach;
-	
+		
 	}
-	
-	/** MOSTRO IL FORM LOGIN **/
-	echo '<form method="post" action="' .$thispage .'" >';
-	echo stripslashes($config['template']['registration']);
-	echo '</form>';
 
+	?>
+
+	<? include('inc/header.php'); ?>
+	<div class="container"> 
+		    <div class="colonna-destra">
+		    	<h1> Effettua la registrazione </h1>
+
+		    		<?
+		    			if($error){
+		    				echo '<div class="alert-error">';
+		    				foreach($message as $value) 
+		    					echo ' <p>'.$value .'</p>'; 
+		    				echo '</div>';
+		    			}
+		    		?>
+
+		    		<form method="post" action="<?=$thispage;?>">
+		    			<fieldset>
+    						<legend>Compila il form per registrarti:</legend>
+
+    					<p>Username: </p>
+		    			<input type="text" name="username" />
+		    			<p>Email: </p>
+		    			<input type="text" name="email" />
+		    			<p>Password: </p>
+		    			<input type="password" name="password" />
+		    			<p>Conferma password: </p>
+		    			<input type="password" name="password-2" />
+		    			<p></p>
+		    			<input type="submit" name="signup-go" />
+		    			</fieldset>
+		    		</form>
+		    </div>
+		</div>  <!-- ./ container --> 
+<?	
 else:	
-	echo '<meta http-equiv="refresh" content="0;url='.$config['row']['site_url'].'" />';	
+	header('Location: index.php');
+
 endif;
 
-/** CHIUDO IL CHECK PER IL FILE DI CONFIGURAZIONE **/
-endif;
 ?>

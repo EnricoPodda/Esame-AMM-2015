@@ -3,9 +3,9 @@ if(isset($_SESSION['enrico-blog']['admin'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=show-users&&pagination=1');
 
-$sql_users 			= 'SELECT * FROM sn_users LIMIT '.  (($_GET['pagination']*10)-10) .',10';
+$sql_users 			= 'SELECT * FROM users LIMIT '.  (($_GET['pagination']*10)-10) .',10';
 $run_sql_users		= mysql_query($sql_users, $config['conn']);
-$run_users_rows		= mysql_query('SELECT * FROM sn_users');
+$run_users_rows		= mysql_query('SELECT * FROM users');
 $exist_users		= mysql_num_rows($run_users_rows);
 $pagination			= ceil($exist_users/10);
 
@@ -27,8 +27,8 @@ if(isset($_POST['delete-group-users'])):
 	{	
 		$delete		= 0;
 		foreach($arrayid as $value):
-			$sql_1 		= "DELETE FROM sn_users WHERE id=$value";
-			$sql_2		= "DELETE FROM sn_comment WHERE id_user=$value";
+			$sql_1 		= "DELETE FROM users WHERE id=$value";
+			$sql_2		= "DELETE FROM comment WHERE id_user=$value";
 			$run_1 		= mysql_query ($sql_1, $config['conn']);
 			$run_2 		= mysql_query ($sql_2, $config['conn']);
 			if($run_1 && $run_2)

@@ -5,10 +5,10 @@ if(!$_GET['value']) header('Location: index.php?page=show-news');
 
 $value				= $_GET['value'];
 
-$sql_category 		= "SELECT id, name FROM sn_category";
+$sql_category 		= "SELECT id, name FROM category";
 $run_sql_category	= mysql_query($sql_category, $config['conn']);
 
-$sql_news			= "SELECT id, title, text, id_category FROM sn_news WHERE id = $value";
+$sql_news			= "SELECT id, title, text, id_category FROM news WHERE id = $value";
 $run_sql_news		= mysql_query($sql_news, $config['conn']);
 $row_news			= mysql_fetch_array($run_sql_news);
 
@@ -22,7 +22,7 @@ if(isset($_POST['update-news'])):
 	$message 	= array();
 	$error		= FALSE;
 	
-	$sql_update =  "UPDATE sn_news
+	$sql_update =  "UPDATE news
 					SET title='$title', id_category=$category, text = '$text'
 					WHERE id=$value";
 					

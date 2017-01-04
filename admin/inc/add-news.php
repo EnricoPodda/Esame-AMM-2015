@@ -1,6 +1,6 @@
 <? 
 if(isset($_SESSION['enrico-blog']['admin'])):
-$sql_category 		= "SELECT id, name FROM sn_category";
+$sql_category 		= "SELECT id, name FROM category";
 $run_sql_category	= mysql_query($sql_category, $config['conn']);
 
 if(isset($_POST['insert-news'])):
@@ -17,9 +17,9 @@ if(isset($_POST['insert-news'])):
 	$message 	= array();
 	$error		= FALSE;
 	
-	$sql_insert =  "INSERT INTO sn_news (title, date, time, text, id_category, author, url_title) 
+	$sql_insert =  "INSERT INTO news (title, date, time, text, id_category, author, url_title) 
 					VALUES ('$title', '$date_now', '$time_now', '$text', $category, '$author', '$url_title')";
-					
+	
 	if(strlen($title) < 2)
 	{
 		$error 		= TRUE;

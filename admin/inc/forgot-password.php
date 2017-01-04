@@ -11,7 +11,7 @@
 	}
 	else
 	{
-		$sql = "SELECT email FROM sn_users WHERE email = '$email'";
+		$sql = "SELECT email FROM users WHERE email = '$email'";
 		$error			= array();
 		
 		if($ris = mysql_query($sql))

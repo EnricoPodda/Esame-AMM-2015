@@ -3,9 +3,9 @@ if(isset($_SESSION['enrico-blog']['admin'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=add-category&&pagination=1');
 
-$sql_category 		= 'SELECT id, name FROM sn_category WHERE id != 0 LIMIT '. (($_GET['pagination']*10)-10) .',10';
+$sql_category 		= 'SELECT id, name FROM category WHERE id != 0 LIMIT '. (($_GET['pagination']*10)-10) .',10';
 $run_sql_category	= mysql_query($sql_category, $config['conn']);
-$run_category_rows	= mysql_query('SELECT * FROM sn_category WHERE id != 0');
+$run_category_rows	= mysql_query('SELECT * FROM category WHERE id != 0');
 $exist_category		= mysql_num_rows($run_category_rows);
 $pagination			= ceil($exist_category/10);
 
@@ -22,8 +22,8 @@ if(isset($_POST['insert-category'])):
 	$message 	= array();
 	$error		= FALSE;
 	
-	$sql_insert =  "INSERT INTO sn_category (name, url_name, avatar_url) 
-					VALUES ('$title', '$url_title', '$icon')";
+	$sql_insert =  "INSERT INTO category (name, url_name) 
+					VALUES ('$title', '$url_title')";
 					
 	if(strlen($title) < 2)
 	{
@@ -61,9 +61,9 @@ if(isset($_POST['delete-group-category'])):
 	{	
 		$delete		= 0;
 		foreach($arrayid as $value):
-			$sql 		= "DELETE FROM sn_category WHERE id=$value";
+			$sql 		= "DELETE FROM category WHERE id=$value";
 			$run 		= mysql_query ($sql, $config['conn']);
-			$sq_update	= "UPDATE sn_news SET id_category=0 WHERE id_category=$value";
+			$sq_update	= "UPDATE news SET id_category=0 WHERE id_category=$value";
 			$run_update	= mysql_query ($sq_update, $config['conn']);
 
 			$delete ++; 
@@ -100,12 +100,7 @@ endif;
                         </div>
                 </div>
                 
-                <div class="control-group">
-                	<label class="control-label" for="category">Url icona </label>
-                        <div class="controls">
-                            <input class="span12" type="text" name="icon" autocomplete="off" value="<? if(isset($icon)) echo stripslashes($icon);?>">
-                        </div>
-                </div>
+                <br> 
                 
                 <div class="form-actions">
                     <button type="submit" class="btn" name="insert-category">Inserisci!</button>

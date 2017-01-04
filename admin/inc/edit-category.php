@@ -1,7 +1,7 @@
 <? 
 if(isset($_SESSION['enrico-blog']['admin'])):
 $id					= $_GET['value'];
-$sql_category 		= "SELECT id, name, avatar_url FROM sn_category WHERE id=$id";
+$sql_category 		= "SELECT id, name, avatar_url FROM category WHERE id=$id";
 $run_sql_category	= mysql_query($sql_category, $config['conn']);
 
 if(isset($_POST['edit-category'])):
@@ -12,7 +12,7 @@ if(isset($_POST['edit-category'])):
 		
 	$error = array();
 	
-	$sql_update =  "UPDATE sn_category
+	$sql_update =  "UPDATE category
 					SET name='$title', url_name='$url_title', avatar_url='$icon'
 					WHERE id=$id";
 					

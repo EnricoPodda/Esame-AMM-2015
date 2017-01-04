@@ -9,19 +9,16 @@
     </li>
 
      <li>
-        <a href="index.php?page=add-category&&pagination=1" class="btn" title="Aggiungi news"> Gestisci categorie news </a>
+        <a href="index.php?page=add-category&&pagination=1" class="btn" title="Gestisci categorie"> Gestisci categorie </a>
     </li>
 
      <li>
-        <a href="index.php?page=show-users" class="btn" title="Aggiungi news"> Gestione utenti </a>
+        <a href="index.php?page=show-users" class="btn" title="Gestione utenti"> Gestione utenti </a>
     </li>
 
      <li>
-        <a href="index.php?page=signup" class="btn" title="Aggiungi news"> Registra un amministratore </a>
+        <a href="index.php?page=signup" class="btn" title="Registra un amministratore"> Registra un amministratore </a>
     </li>
 
-     <li>
-        <a href="index.php?page=settings" class="btn" title="Aggiungi news"> Impostazioni </a>
-    </li> 
 </ul>
 </div>

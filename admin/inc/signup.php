@@ -12,7 +12,7 @@ if(isset($_POST['signup-go']))
 	$string 	= explode("/", $url);
 	$avatar 	= 'http://'.$string[0].'/'.$string[1].'/upload/default-avatar.png';
 		
-	$query = "INSERT INTO sn_users (username, password, email, newsletter, level, avatar) VALUES ('$user', '$passwordcript', '$email', $newsletter, 'admin', '$avatar');";
+	$query = "INSERT INTO users (username, password, email, newsletter, level, avatar) VALUES ('$user', '$passwordcript', '$email', $newsletter, 'admin', '$avatar');";
 	
 	$error		= FALSE;
 	$message	= array();
@@ -65,7 +65,7 @@ if(isset($_POST['signup-go']))
 		$message[3] = 'L\'email deve essere lunga massimo 50 caratteri.';
 	}
 	
-	$ceq 	= "SELECT email FROM sn_users WHERE email = '$email';";
+	$ceq 	= "SELECT email FROM users WHERE email = '$email';";
 	$rceq	= mysql_query($ceq);
 	if($rceq)
 	{
@@ -77,7 +77,7 @@ if(isset($_POST['signup-go']))
 		}
 	}
 	
-	$clq 	= "SELECT username FROM sn_users WHERE username = '$user';";
+	$clq 	= "SELECT username FROM users WHERE username = '$user';";
 	$rclq	= mysql_query($clq);
 	if($rclq)
 	{

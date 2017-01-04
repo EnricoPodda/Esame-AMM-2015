@@ -1,6 +1,6 @@
 html, body{margin:0; padding:0;}
 
-body{ background-color: #fefefe;  font-family: arial; font-size:13px;}
+body{ background-image: url("../img/background.png"); background-color: #eceff5; background-repeat: repeat-x; font-family: arial; font-size:13px;}
 
 .container{
 	width: 1024px;
@@ -8,6 +8,7 @@ body{ background-color: #fefefe;  font-family: arial; font-size:13px;}
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 60px;
+
 }
 
 .top-bar {
@@ -32,9 +33,10 @@ body{ background-color: #fefefe;  font-family: arial; font-size:13px;}
 }
 
 .menu-right{
-	width: 150px;
+	width: 500px;
 	float:right;
-	margin-right: 	5px;
+	margin-right:25px;
+	text-align: right;
 }
 
 .colonna-sinistra{
@@ -43,8 +45,13 @@ body{ background-color: #fefefe;  font-family: arial; font-size:13px;}
 }
 
 .colonna-destra{
-	width: 764px;
+	width: 730px;
 	float:left;
+	border: 1px solid #ccc;
+	padding:15px;
+	background-color:white;
+	border-radius:15px;
+
 }
 
 .alert-error{
