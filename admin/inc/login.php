@@ -1,4 +1,4 @@
-<? if(!isset($_SESSION['enrico-blog']['admin'])):
+<? if(!isset($_SESSION['enrico-blog']['user'])):
 if(isset($_POST['login-go'])):
 	$user			= mysql_real_escape_string($_POST['username']);
 	$password		= mysql_real_escape_string($_POST['password']);
@@ -10,14 +10,14 @@ if(isset($_POST['login-go'])):
 		if(mysql_num_rows($ris) == 1)
 		{
 			$array = mysql_fetch_array($ris);
-			$_SESSION['enrico-blog']['admin']['password_no_cript']	= $password;
-			$_SESSION['enrico-blog']['admin']['password_cript']		= $array['password'];
-			$_SESSION['enrico-blog']['admin']['username'] 			= $array['username'];
-			$_SESSION['enrico-blog']['admin']['email'] 				= $array['email'];
-			$_SESSION['enrico-blog']['admin']['newsletter'] 			= $array['newsletter'];
-			$_SESSION['enrico-blog']['admin']['level'] 				= $array['level'];
-			$_SESSION['enrico-blog']['admin']['id'] 					= $array['id'];
-			$_SESSION['enrico-blog']['admin']['avatar']				= $array['avatar'];
+			$_SESSION['enrico-blog']['user']['password_no_cript']	= $password;
+			$_SESSION['enrico-blog']['user']['password_cript']		= $array['password'];
+			$_SESSION['enrico-blog']['user']['username'] 			= $array['username'];
+			$_SESSION['enrico-blog']['user']['email'] 				= $array['email'];
+			$_SESSION['enrico-blog']['user']['newsletter'] 			= $array['newsletter'];
+			$_SESSION['enrico-blog']['user']['level'] 				= $array['level'];
+			$_SESSION['enrico-blog']['user']['id'] 					= $array['id'];
+			$_SESSION['enrico-blog']['user']['avatar']				= $array['avatar'];
 			
 			$error		= FALSE;
 			header("Location: index.php?page=home", "refresh");
@@ -71,11 +71,6 @@ endif;
 						</div>
 				</div>
 				
-				<div class="control-group">
-					<div class="controls">
-						<p><a href="index.php?page=forgot-password" title="Password dimenticata ?">Password dimenticata ? </a></p>
-					</div>
-				</div>
 				
 				<div class="form-actions">
 					<button type="submit" class="btn" name="login-go">Login</button>

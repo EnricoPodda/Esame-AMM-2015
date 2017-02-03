@@ -1,4 +1,4 @@
-<? if(!isset($_SESSION['enrico-blog']['admin'])):
+<? if(!isset($_SESSION['enrico-blog']['user'])):
 
 	if(isset($_POST['restore'])):
 	

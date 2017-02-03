@@ -1,4 +1,4 @@
-<? if(isset($_SESSION['enrico-blog']['admin'])):
+<? if(isset($_SESSION['enrico-blog']['user'])):
 
 if(!$_GET['username']) header('Location: index.php?page=show-users');
 
@@ -14,7 +14,7 @@ if(isset($_POST['edit-info']))
 {
 	$user					= mysql_real_escape_string($_POST['user']);
 	$email					= mysql_real_escape_string($_POST['email']);
-	$level					= isset($_POST['level']) ? mysql_real_escape_string($_POST['level']) : $_SESSION['enrico-blog']['admin']['level'];
+	$level					= isset($_POST['level']) ? mysql_real_escape_string($_POST['level']) : $_SESSION['enrico-blog']['user']['level'];
 	$newsletter				= isset($_POST['newsletter']) ? $_POST['newsletter'] : 0;
 			
 	$error		= FALSE;
@@ -88,12 +88,12 @@ if(isset($_POST['edit-info']))
 			$error		= FALSE;
 			$message[6]	= 'L\'account &egrave; stato modificato con successo, attendi il reindirizzamento automatico.';
 			
-			if($_SESSION['enrico-blog']['admin']['username'] == $usernameGET)
+			if($_SESSION['enrico-blog']['user']['username'] == $usernameGET)
 			{
-				$_SESSION['enrico-blog']['admin']['username'] 			= $user;
-				$_SESSION['enrico-blog']['admin']['email'] 				= $email;
-				$_SESSION['enrico-blog']['admin']['newsletter'] 			= $level;
-				$_SESSION['enrico-blog']['admin']['avatar']				= $path;
+				$_SESSION['enrico-blog']['user']['username'] 			= $user;
+				$_SESSION['enrico-blog']['user']['email'] 				= $email;
+				$_SESSION['enrico-blog']['user']['newsletter'] 			= $level;
+				$_SESSION['enrico-blog']['user']['avatar']				= $path;
 			}
 			
 			header("Location: index.php?page=edit-profile&&username=$user", "refresh");
@@ -151,10 +151,10 @@ if(isset($_POST['edit-pass'])):
 			$error		= FALSE;
 			$message[6]	= 'L\'account &egrave; stato modificato con successo, attendi il reindirizzamento automatico.';
 			
-			if($_SESSION['enrico-blog']['admin']['username'] == $usernameGET)
+			if($_SESSION['enrico-blog']['user']['username'] == $usernameGET)
 			{
-				$_SESSION['enrico-blog']['admin']['password_no_cript']	= $password_nocript;
-				$_SESSION['enrico-blog']['admin']['password_cript']		= $password;
+				$_SESSION['enrico-blog']['user']['password_no_cript']	= $password_nocript;
+				$_SESSION['enrico-blog']['user']['password_cript']		= $password;
 			}
 			
 			header("index.php?page=edit-profile&&username=$usernameGET", "refresh");

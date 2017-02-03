@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=add-category&&pagination=1');
 
@@ -120,9 +120,6 @@ endif;
 			?>
                         
             <? if(!isset($_POST['delete-group-category']) && !isset($_POST['single-delete'])): ?>
-            <div class="alert alert-info">
-            	<p><strong>Attenzione! </strong> La rimozione di una categoria porterà la modifica anche alle news associate ad essa.</p>
-            </div>
             <? endif; ?>
             <table class="table table-striped">
                 <thead>
@@ -130,7 +127,6 @@ endif;
                         <th>#</th>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th></th>
                     </tr>
                 </thead>
                 
@@ -141,9 +137,6 @@ endif;
 							echo '<td><input type="checkbox" name="category[]" value="'.$row_category['id'] .'"  /></td>';
 							echo '<td>' .$row_category['id'] .'</td>';
 							echo '<td>' .$row_category['name'] .'</td>';
-							echo '<td>
-									<a class="btn" href="index.php?page=edit-category&&value='.$row_category['id'] .'">Modifica</a></td>
-								  </td>';
 						echo '</tr>';
             		endwhile; ?>
                     

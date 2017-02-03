@@ -6,6 +6,9 @@ ini_set('display_error', '0');
 include('../config.php'); 
 include('inc/function.inc.php');     
       
+if($_SESSION['enrico-blog']['user']['level'] != "admin")
+	header('Location: ../index.php');
+
 if(!isset($_GET['page'])): 
 	header('Location: index.php?page=home');
 else:

@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 $sql_category 		= "SELECT id, name FROM category";
 $run_sql_category	= mysql_query($sql_category, $config['conn']);
 
@@ -12,7 +12,7 @@ if(isset($_POST['insert-news'])):
 	$text		= change_dangerous_characters($_POST['text']);; 
 	$date_now 	= date("y-m-d");
 	$time_now 	= date('H:i:s', time());
-	$author		= $_SESSION['enrico-blog']['admin']['username'];
+	$author		= $_SESSION['enrico-blog']['user']['username'];
 	
 	$message 	= array();
 	$error		= FALSE;

@@ -17,7 +17,7 @@
     	<a href="../index.php"> Home page</a>
     </div>
 
-    <? if(isset($_SESSION['enrico-blog']['admin'])): ?>
+    <? if($_SESSION['enrico-blog']['user']['level'] == "admin"): ?>
     <div class="menu-right">
 	    <a href="index.php?page=edit-profile&&username<?= $_SESSION['enrico-blog']['admin']['username'];?>">Modifica profilo</a>
 	    <a href="index.php?page=logout">Logout</a></li>

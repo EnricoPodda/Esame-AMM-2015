@@ -1,18 +1,14 @@
-<? if(isset($_SESSION['enrico-blog']['admin'])):
+<? if(isset($_SESSION['enrico-blog']['user'])):
 if(isset($_POST['signup-go']))
 {
 	$user					= mysql_real_escape_string($_POST['user']);
 	$password				= mysql_real_escape_string($_POST['password']);
 	$password_2				= mysql_real_escape_string($_POST['password-2']);
 	$email					= mysql_real_escape_string($_POST['email']);
-	$newsletter				= isset($_POST['newsletter']) ? $_POST['newsletter'] : 0;
 	$passwordcript			= cript_password($password);
 	
-	$url 		= $_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-	$string 	= explode("/", $url);
-	$avatar 	= 'http://'.$string[0].'/'.$string[1].'/upload/default-avatar.png';
-		
-	$query = "INSERT INTO users (username, password, email, newsletter, level, avatar) VALUES ('$user', '$passwordcript', '$email', $newsletter, 'admin', '$avatar');";
+	$url 		= $_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);		
+	$query = "INSERT INTO users (username, password, email, level) VALUES ('$user', '$passwordcript', '$email', 'admin');";
 	
 	$error		= FALSE;
 	$message	= array();
@@ -162,13 +158,7 @@ if(isset($_POST['signup-go']))
                         </div>
                 </div>
                 
-                <div class="control-group">
-                    <div class="controls">
-                        <label class="checkbox">
-                        	<input type="checkbox" name="newsletter"  value="1" <? if(isset($newsletter) && ($newsletter == 1)) echo 'checked="checked"';?> /> Newsletter attivo ? 
-                        </label>
-                	</div>
-                </div>
+                <p></p>
                 	
                 <div class="form-actions">
                     <button type="submit" class="btn" name="signup-go">Registra</button>

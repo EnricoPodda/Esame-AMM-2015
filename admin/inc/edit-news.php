@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 
 if(!$_GET['value']) header('Location: index.php?page=show-news');
 

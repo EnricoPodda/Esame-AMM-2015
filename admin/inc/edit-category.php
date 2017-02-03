@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 $id					= $_GET['value'];
 $sql_category 		= "SELECT id, name, avatar_url FROM category WHERE id=$id";
 $run_sql_category	= mysql_query($sql_category, $config['conn']);

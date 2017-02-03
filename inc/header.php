@@ -11,18 +11,17 @@
 
 <body>
 <div class="top-bar">
-     
+
     <div class="menu-left">
+ 		<? if($_SESSION['enrico-blog']['user']['level'] == "admin"): ?>
+	    	<a href="./admin/">Amministrazione</a></li>
+	    <? endif; ?>
     	<a href="index.php"> Home page</a>
     </div>
 
     <? if(isset($_SESSION['enrico-blog'])): ?>
     <div class="menu-right">
     	<b> Bentornato, <?= $_SESSION['enrico-blog']['user']['username'];?> </b>
-
-    	<? if($_SESSION['enrico-blog']['user']['level'] == "admin"): ?>
-	    	<a href="./admin/">Amministrazione</a></li>
-	    <? endif; ?>
 
 	    <a href="logout.php">Logout</a></li>
 	</div>

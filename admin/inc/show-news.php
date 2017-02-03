@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=show-news&&pagination=1');
 
@@ -81,9 +81,6 @@ endif;
                 <tbody> 
                 
                 <? while($row_news = mysql_fetch_array($run_sql_news)):
-					$sql_comment 		= "SELECT count(*) FROM comment WHERE id_news =". $row_news['id'];
-					$run_sql_comment 	= mysql_query($sql_comment, $config['conn']);
-					$comment			= mysql_fetch_array($run_sql_comment);
 						echo '<tr>';
 							echo '<td><input type="checkbox" name="news[]" value="'.$row_news['id'] .'"  /></td>';
 							echo '<td>' .$row_news['id'] .'</td>';

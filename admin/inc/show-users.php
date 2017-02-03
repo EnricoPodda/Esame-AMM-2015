@@ -1,5 +1,5 @@
 <? 
-if(isset($_SESSION['enrico-blog']['admin'])):
+if(isset($_SESSION['enrico-blog']['user'])):
 
 if(!$_GET['pagination'])header('Location: index.php?page=show-users&&pagination=1');
 
@@ -69,7 +69,6 @@ endif;
                         <th>#</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Newsletter</th>
                         <th>Grado</th>
                         <th></th>
                     </tr>
@@ -83,11 +82,10 @@ endif;
 					$row_users['level']		= $row_users['level'] == 'admin' ? 'Amministratore'
 																			 : 'Utente';
 						echo '<tr>';
-							if($row_users['id'] == 1 || $row_users['id'] == $_SESSION['enrico-blog']['admin']['id']) echo '<td><input type="checkbox" disabled="disabled"  /></td>';
+							if($row_users['id'] == 1 || $row_users['id'] == $_SESSION['enrico-blog']['user']['id']) echo '<td><input type="checkbox" disabled="disabled"  /></td>';
 							else echo '<td><input type="checkbox" name="users[]" value="'.$row_users['id'] .'"  /></td>';
 							echo '<td>' .$row_users['username'] .'</td>';
 							echo '<td>' .$row_users['email'] .'</td>';
-							echo '<td>' .$row_users['newsletter'] .'</td>';
 							echo '<td>' .$row_users['level'].'</td>';
 							echo '<td>';
 							echo'<a class="btn" href="index.php?page=edit-profile&&username='.$row_users['username'] .'">Modifica</a>
