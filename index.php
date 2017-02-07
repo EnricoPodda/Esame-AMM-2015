@@ -37,7 +37,7 @@ if (@file_exists('config.php') == FALSE)
 		    	<hr>
 		    	<? endwhile; ?>
 		    <? else: ?>
-		    	<h1> Benvenuto nel Blod di Enrico! </h1>
+		    	<h1> Benvenuto nel Blog di Enrico! </h1>
 		    	<p> Effettua l'accesso per poter leggere le news! </p>
 		    	<p> Account disponibili: </p>
 		  		<p> Amministratore:				<b>Enrico</b> </p>
@@ -56,6 +56,8 @@ if (@file_exists('config.php') == FALSE)
 		  		<li> Gestire utenti</li>
 		  		<li> Registrare un amministratore</li>
 		  		</ul>
+		  		<p></p>
+		  		<p> Chiaramente, chiunque non possedesse già un account può registrarsi con uno nuovo come utente. </p>
 
 
 			<? endif; ?>
