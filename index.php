@@ -38,7 +38,9 @@ if (@file_exists('config.php') == FALSE)
 		    	<? endwhile; ?>
 		    <? else: ?>
 		    	<h1> Benvenuto nel Blog di Enrico! </h1>
-		    	<p> Effettua l'accesso per poter leggere le news! </p>
+		    	<p> Questo sito si occupa di mostrare tutte le news che Enrico (ed ogni altro amministratore da lui aggiunto) scriverà sui suoi interessi. </p>
+		    	<p> Qualsiasi utente normale potrà leggere queste news, ma solo questo. </p>
+		    	<p> Effettua quindi l'accesso per poter leggere le news! </p>
 		    	<p> Account disponibili: </p>
 		  		<p> Amministratore:				<b>Enrico</b> </p>
 		  		<p> Utente:						<b>Gino</b> </p>
@@ -56,9 +58,14 @@ if (@file_exists('config.php') == FALSE)
 		  		<li> Gestire utenti</li>
 		  		<li> Registrare un amministratore</li>
 		  		</ul>
-		  		<p></p>
 		  		<p> Chiaramente, chiunque non possedesse già un account può registrarsi con uno nuovo come utente. </p>
-
+		  		<b>Requisiti sodisfatti</b>
+		  		<ul>
+		  		<li> Utilizzo di HTML e CSS </li>
+		  		<li> Utilizzo di PHP e MySQL </li>
+		  		<li> Ruoli distinti: Amministratore e Utente </li>
+		  		<li> Transazione in admin/inc/show-news.php, righe 29-43</li>
+		  		</ul>
 
 			<? endif; ?>
 	    </div>
