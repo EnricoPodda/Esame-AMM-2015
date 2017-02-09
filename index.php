@@ -59,7 +59,7 @@ if (@file_exists('config.php') == FALSE)
 		  		<li> Registrare un amministratore</li>
 		  		</ul>
 		  		<p> Chiaramente, chiunque non possedesse già un account può registrarsi con uno nuovo come utente. </p>
-		  		<b>Requisiti sodisfatti</b>
+		  		<b>Requisiti soddisfatti</b>
 		  		<ul>
 		  		<li> Utilizzo di HTML e CSS </li>
 		  		<li> Utilizzo di PHP e MySQL </li>
